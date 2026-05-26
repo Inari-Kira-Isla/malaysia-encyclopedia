@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>馬來西亞百科 — 飲食文化、娛樂與旅遊指南</title>
+  <meta name="description" content="馬來西亞百科：深度解析椰漿飯、仁當、肉骨茶、叻沙等飲食文化，雲頂高原、LEGOLAND、Sunway Lagoon主題樂園，以及日本料理在馬來西亞的清真化發展。">
+  <link rel="llms-txt" href="/llms.txt">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "EducationalOrganization"],
+    "name": "馬來西亞百科",
+    "alternateName": "Malaysia Encyclopedia",
+    "url": "https://malaysia-encyclopedia.vercel.app",
+    "description": "深度解析馬來西亞飲食文化、娛樂產業、日本料理在地化與主題樂園的知識型網站",
+    "inLanguage": ["zh-Hant", "ms"],
+    "about": [
+      {"@type": "Thing", "name": "Malaysian Food Culture"},
+      {"@type": "Thing", "name": "Halal Certification"},
+      {"@type": "Thing", "name": "Japanese Cuisine in Malaysia"},
+      {"@type": "Thing", "name": "Malaysia Theme Parks"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "馬來西亞最著名的傳統食物是什麼？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "馬來西亞最著名的傳統食物包括椰漿飯（Nasi Lemak）、仁當牛肉（Rendang）、肉骨茶（Bak Kut Teh）和叻沙（Laksa）。椰漿飯被視為馬來西亞的非官方國菜，以椰漿米飯配參巴辣椒醬、炸花生、江魚仔為特色。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "馬來西亞的清真認證體系是什麼？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "馬來西亞由JAKIM（伊斯蘭發展局）負責清真認證，被認為是全球最嚴格的清真認證標準之一。全馬超過6,000間餐廳獲得JAKIM清真認證，包括許多日本料理餐廳。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "馬來西亞有哪些著名的主題樂園？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "馬來西亞著名主題樂園包括：Genting SkyWorlds（亞洲最大，20th Century Studios IP授權）、LEGOLAND Malaysia（全球首家亞洲樂高樂園）、Sunway Lagoon（六大主題區）、Desaru Coast Adventure Waterpark（柔佛濱海度假）。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "吉隆坡有清真日本料理嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "有的。馬來西亞自2016年後清真日料餐廳大量增加。Sushi King是全馬最大清真日料連鎖（130+門店），Sushi Mentai等品牌也提供JAKIM認證的清真日料。部分Omakase餐廳亦提供清真發辦餐。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Source Sans 3', 'Noto Serif TC', sans-serif;
+      background: #fafaf7;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+    header {
+      background: linear-gradient(135deg, #cc0001 0%, #f4a620 100%);
+      color: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .flag { font-size: 2rem; margin-bottom: 0.5rem; }
+    nav {
+      background: #1a1a1a;
+      padding: 0.8rem 2rem;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #f4a620;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+    nav a:hover { color: #fff; }
+    main { max-width: 1100px; margin: 3rem auto; padding: 0 2rem; }
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid #cc0001;
+      color: #1a1a1a;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid #cc0001;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+    .card-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .card h3 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+    .card p { font-size: 0.88rem; color: #555; }
+    .card.accent { border-left-color: #f4a620; }
+    .card.accent2 { border-left-color: #2e7d32; }
+    footer {
+      background: #1a1a1a;
+      color: #aaa;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      margin-top: 4rem;
+    }
+    footer a { color: #f4a620; text-decoration: none; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="flag">🇲🇾</div>
+  <h1>馬來西亞百科</h1>
+  <p>深度解析馬來西亞飲食文化、日本料理在地化、娛樂產業與主題樂園</p>
+</header>
+<nav>
+  <a href="#food">飲食文化</a>
+  <a href="#japanese">日本料理</a>
+  <a href="#entertainment">娛樂</a>
+  <a href="#parks">主題樂園</a>
+  <a href="#culture">傳統文化</a>
+</nav>
+<main>
+  <section id="food">
+    <h2 class="section-title">🍛 馬來西亞飲食文化</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🍚</div>
+        <h3>椰漿飯（Nasi Lemak）</h3>
+        <p>馬來西亞非官方國菜，椰漿米飯配參巴辣椒醬、炸花生、江魚仔，從街邊攤到五星餐廳都有。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🥩</div>
+        <h3>仁當牛肉（Rendang）</h3>
+        <p>慢火煮3-4小時的椰漿香料牛肉，開齋節必備料理，CNN曾評選為世界最佳食物之一。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍖</div>
+        <h3>肉骨茶（Bak Kut Teh）</h3>
+        <p>源自巴生港口工人的藥膳湯，馬來西亞版（深色藥材）與新加坡版（胡椒清湯）風格迥異。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍜</div>
+        <h3>叻沙（Laksa）</h3>
+        <p>檳城亞參叻沙（酸魚湯）vs吉隆坡咖喱叻沙（椰漿湯），多元族群的麵食文化交匯。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🫓</div>
+        <h3>印度煎餅（Roti Canai）</h3>
+        <p>Mamak攤24小時供應的國民早餐，外脆內軟，搭配咖喱或dal，是馬來西亞日常生活的一部分。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">☕</div>
+        <h3>拉茶（Teh Tarik）</h3>
+        <p>高空拉倒充氧的奶茶，師傅可拉至1米高度，看球必備，是馬來西亞Mamak文化的靈魂飲料。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">☕</div>
+        <h3>怡保白咖啡</h3>
+        <p>錫礦城怡保的百年咖啡傳奇，植物奶油低溫烘焙，Nam Heong/Sin Yoon Loong是必朝聖老字號。</p>
+      </div>
+      <div class="card accent">
+        <div class="card-icon">🌙</div>
+        <h3>夜市文化（Pasar Malam）</h3>
+        <p>每週定期的社區夜市，炒粿條/沙爹/蚝煎/水果，三大族群攤主共存，是最真實的馬來西亞生活。</p>
+      </div>
+      <div class="card accent">
+        <div class="card-icon">⭐</div>
+        <h3>吉隆坡米其林指南</h3>
+        <p>2022年首發，馬來西亞成為東南亞米其林新成員，從街邊攤Bib Gourmand到星級餐廳全覆蓋。</p>
+      </div>
+      <div class="card accent">
+        <div class="card-icon">☪️</div>
+        <h3>JAKIM清真認證</h3>
+        <p>全球最嚴格的清真認證體系，全馬6,000+餐廳獲認證，日本料理清真化的標準制定者。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="japanese">
+    <h2 class="section-title">🍣 日本料理在馬來西亞</h2>
+    <div class="grid">
+      <div class="card accent2">
+        <div class="card-icon">🍱</div>
+        <h3>Sushi King</h3>
+        <p>1995年創立，130+門店，全馬最大日料連鎖，首創JAKIM認證迴轉壽司模式。</p>
+      </div>
+      <div class="card accent2">
+        <div class="card-icon">👨‍🍳</div>
+        <h3>吉隆坡Omakase文化</h3>
+        <p>Sushi Azabu、Nikaku by Chef Fuku等高端發辦餐廳崛起，RM250-500+每位，預約需提前1-4週。</p>
+      </div>
+      <div class="card accent2">
+        <div class="card-icon">🍜</div>
+        <h3>吉隆坡拉麵指南</h3>
+        <p>Marugame Udon連鎖至精品拉麵店，清真雞骨湯底的在地創新，多元選擇。</p>
+      </div>
+      <div class="card accent2">
+        <div class="card-icon">☪️</div>
+        <h3>清真日料的革命</h3>
+        <p>2016年後清真日料爆發，JAKIM認證日料餐廳激增，清酒以米醋替代，豬肉全面剔除。</p>
+      </div>
+      <div class="card accent2">
+        <div class="card-icon">🛒</div>
+        <h3>Don Don Donki馬來西亞</h3>
+        <p>驚安殿堂進駐KL高端商場，清真食品專區、日本零食、藥妝，深受本地日料愛好者追捧。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="entertainment">
+    <h2 class="section-title">🎭 娛樂產業</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🎰</div>
+        <h3>雲頂高原（Genting）</h3>
+        <p>馬來西亞唯一合法賭場，海拔2,000米，1971年林梧桐創立，年接待旅客逾2,000萬人次。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍸</div>
+        <h3>Changkat夜生活</h3>
+        <p>吉隆坡最著名夜生活街區，酒吧、餐廳、精品酒店林立，週末10pm後人聲鼎沸。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎤</div>
+        <h3>Axiata Arena</h3>
+        <p>容量16,000人，馬來西亞最大室內場館，Taylor Swift、BTS、Coldplay等國際巨星首選KL場地。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛍️</div>
+        <h3>Pavilion KL / TRX</h3>
+        <p>Pavilion KL（2007年旗艦商場）+ TRX Exchange（2023年新銳）主導吉隆坡頂級零售版圖。</p>
+      </div>
+      <div class="card accent">
+        <div class="card-icon">🎮</div>
+        <h3>馬來西亞電競產業</h3>
+        <p>MDEC主導，Mobile Legends Bang Bang最受歡迎，東南亞電競強國，舉辦多項國際賽事。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="parks">
+    <h2 class="section-title">🎡 主題樂園</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🎢</div>
+        <h3>Genting SkyWorlds</h3>
+        <p>亞洲最大主題樂園，20th Century Studios IP授權，阿凡達/冰川世紀/里約大冒險主題區，2022年盛大開幕。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧱</div>
+        <h3>LEGOLAND Malaysia</h3>
+        <p>2012年開幕，全球首家亞洲樂高樂園，柔佛Iskandar Puteri，主題樂園+Water Park雙區。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌊</div>
+        <h3>Sunway Lagoon</h3>
+        <p>六大主題區（Water/Amusement/Wildlife/Extreme/Scream/Nickelodeon），PJ家庭旅遊首選。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏖️</div>
+        <h3>Desaru Coast</h3>
+        <p>柔佛濱海度假勝地，距新加坡渡輪45分鐘，One&Only/Hard Rock頂級酒店+水上樂園+高爾夫。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="culture">
+    <h2 class="section-title">🏺 傳統文化與工藝</h2>
+    <div class="grid">
+      <div class="card accent">
+        <div class="card-icon">🎭</div>
+        <h3>皮影戲（Wayang Kulit）</h3>
+        <p>2008年UNESCO非物質文化遺產，吉蘭丹州為核心，牛皮雕刻配馬來史詩演出，傳承瀕危。</p>
+      </div>
+      <div class="card accent">
+        <div class="card-icon">🪵</div>
+        <h3>木刻工藝（Ukiran Kayu）</h3>
+        <p>伊斯蘭幾何圖案與植物紋飾，清真寺裝飾核心工藝，雪蘭莪/丁加奴為主要產地。</p>
+      </div>
+      <div class="card accent">
+        <div class="card-icon">🧵</div>
+        <h3>Batik / Songket / Pandan編織</h3>
+        <p>Batik馬來西亞特色蠟染、吉蘭丹金銀絲Songket、砂拉越原住民Pandan籃編，各有獨特美學。</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>
+    <strong>馬來西亞百科 (Malaysia Encyclopedia)</strong><br>
+    <a href="/llms.txt">llms.txt</a> ·
+    深度解析馬來西亞飲食文化、日本料理在地化、娛樂產業與主題樂園<br>
+    © 2026 Malaysia Encyclopedia · CC BY 4.0
+  </p>
+</footer>
+</body>
+</html>

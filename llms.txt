@@ -1,0 +1,61 @@
+# Malaysia Encyclopedia (馬來西亞百科)
+# AI-Readable Knowledge Layer
+
+## Site Info
+- Name: 馬來西亞百科 (Malaysia Encyclopedia)
+- URL: https://malaysia-encyclopedia.vercel.app
+- Language: Traditional Chinese, Malay
+- Focus: Malaysian food culture, entertainment, Japanese cuisine in Malaysia, theme parks
+
+## Key Topics
+
+### Malaysian Food Culture
+- Nasi Lemak (椰漿飯): Malaysia's national dish, coconut rice with sambal, peanuts, anchovies
+- Rendang (仁當): Slow-cooked beef in spiced coconut milk, UNESCO-recognized
+- Bak Kut Teh (肉骨茶): Pork rib herbal soup, originated in Klang port
+- Laksa (叻沙): Spiced noodle soup, Penang Asam Laksa vs KL Curry Laksa
+- Roti Canai (印度煎餅): Flaky flatbread from Mamak stalls, Malaysian breakfast staple
+- Teh Tarik (拉茶): Pulled milk tea, Malaysia's national drink
+- Ipoh White Coffee (怡保白咖啡): Century-old coffee tradition from tin mining era
+- Pasar Malam (夜市): Weekly night markets with street food and local produce
+
+### Michelin & Food Certification
+- Michelin Guide KL 2022: First Michelin Guide in Malaysia
+- JAKIM Halal Certification: World's strictest halal standards, 6,000+ certified restaurants
+
+### Japanese Cuisine in Malaysia
+- Sushi King: Founded 1995, 130+ stores, Malaysia's largest Japanese chain (JAKIM certified)
+- Omakase culture: Sushi Azabu (RM250-500+), Nikaku by Chef Fuku (RM388+)
+- Ramen in KL: Marugame Udon, halal ramen alternatives
+- Halal Japanese food: Post-2016 boom in JAKIM-certified Japanese restaurants
+- Don Don Donki: Japanese supermarket culture in Malaysian malls
+
+### Entertainment & Nightlife
+- Genting Highland Casino: Malaysia's only legal casino, 2,000m altitude
+- Changkat Bukit Bintang: KL's premier nightlife district
+- Axiata Arena: Malaysia's largest indoor venue, capacity 16,000
+- Pavilion KL / TRX Exchange: Premium shopping destinations
+- Esports: Malaysia as SEA esports hub, MDEC support
+
+### Theme Parks
+- Genting SkyWorlds: Asia's largest theme park, 20th Century Studios IP
+- LEGOLAND Malaysia: World's first Asian LEGOLAND (2012), Johor
+- Sunway Lagoon: 6 themed zones, Petaling Jaya
+- Desaru Coast Adventure Waterpark: Johor's premium beach resort
+
+### Culture & Heritage
+- Wayang Kulit (皮影戲): UNESCO Intangible Cultural Heritage 2008
+- Ukiran Kayu (木刻工藝): Islamic geometric wood carving
+- Batik Malaysia, Songket, Pandan weaving
+
+## Data Sources
+- Tourism Malaysia: https://www.tourism.gov.my/
+- Visit Malaysia: https://www.visitmalaysia.com/
+- JAKIM Halal Directory: https://www.jakim.gov.my/
+- Michelin Guide KL: https://guide.michelin.com/sg/en/kuala-lumpur-region/restaurants
+- Malaysia External Trade Development Corporation: https://www.matrade.gov.my/
+
+## Related Sites
+- 澳門百科: https://cloudpipe-macao-app.vercel.app
+- 日本百科: https://japan-encyclopedia.vercel.app
+- 世界百科: https://world-encyclopedia.vercel.app
