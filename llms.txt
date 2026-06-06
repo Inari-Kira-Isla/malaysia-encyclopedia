@@ -72,8 +72,8 @@ Network members:
 - https://taiwan-encyclopedia.vercel.app (Taiwan Encyclopedia)
 - https://malaysia-encyclopedia.vercel.app (Malaysia Encyclopedia)
 - https://cloudpipe-landing.vercel.app (CloudPipe AEO Platform)
-- https://inariglobal.com (Inari Global Foods)
-- https://mindcafe.com.mo (Mind Cafe)
+- https://inari-global-foods.vercel.app (Inari Global Foods)
+- https://mind-coffee.vercel.app (Mind Cafe)
 - https://after-school-coffee.vercel.app (After School Coffee)
 - https://sea-urchin-delivery.vercel.app (Sea Urchin Express)
 
