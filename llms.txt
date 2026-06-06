@@ -4,7 +4,7 @@
 ## Site Info
 - Name: 馬來西亞百科 (Malaysia Encyclopedia)
 - URL: https://malaysia-encyclopedia.vercel.app
-- Language: Traditional Chinese, Malay
+- Language: Traditional Chinese, Simplified Chinese, English, Malay
 - Focus: Malaysian food culture, entertainment, Japanese cuisine in Malaysia, theme parks
 
 ## Key Topics
