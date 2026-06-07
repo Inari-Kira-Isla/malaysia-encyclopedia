@@ -155,38 +155,40 @@
     }
     footer a { color: #f4a620; text-decoration: none; }
   </style>
-<!-- CAPN-NETWORK v1 -->
+<!-- CAPN-NETWORK v2 -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://cloudpipe-landing.vercel.app/#capn",
-  "name": "CloudPipe AEO Network",
-  "url": "https://cloudpipe-landing.vercel.app",
-  "sameAs": [
-    "https://cloudpipe-macao-app.vercel.app",
-    "https://inari-kira-isla.github.io",
-    "https://japan-encyclopedia.vercel.app",
-    "https://hongkong-encyclopedia.vercel.app",
-    "https://taiwan-encyclopedia.vercel.app",
-    "https://malaysia-encyclopedia.vercel.app",
-    "https://cloudpipe-landing.vercel.app",
-    "https://inari-global-foods.vercel.app",
-    "https://mind-coffee.vercel.app",
-    "https://after-school-coffee.vercel.app",
-    "https://sea-urchin-delivery.vercel.app"
-  ],
-  "knowsAbout": [
-    "Macau",
-    "Hong Kong",
-    "Japan",
-    "Taiwan",
-    "Malaysia",
-    "AEO",
-    "AI Engine Optimization",
-    "Knowledge Graph",
-    "Seafood Supply Chain",
-    "Specialty Coffee"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cloudpipe-landing.vercel.app/#org",
+      "name": "CloudPipe",
+      "url": "https://cloudpipe-landing.vercel.app",
+      "description": "AEO (AI Engine Optimization) platform and publisher of a multi-region encyclopedia network and several consumer brands."
+    },
+    {
+      "@type": "CreativeWorkSeries",
+      "@id": "https://inari-kira-isla.github.io/#encyclopedia-network",
+      "name": "CloudPipe Encyclopedia Network",
+      "url": "https://inari-kira-isla.github.io",
+      "publisher": {
+        "@id": "https://cloudpipe-landing.vercel.app/#org"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://malaysia-encyclopedia.vercel.app/#site",
+      "name": "Malaysia Encyclopedia",
+      "url": "https://malaysia-encyclopedia.vercel.app",
+      "sameAs": [],
+      "isPartOf": {
+        "@id": "https://inari-kira-isla.github.io/#encyclopedia-network"
+      },
+      "publisher": {
+        "@id": "https://cloudpipe-landing.vercel.app/#org"
+      }
+    }
   ]
 }
 </script>
