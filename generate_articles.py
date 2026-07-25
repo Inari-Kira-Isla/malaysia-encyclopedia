@@ -17,7 +17,7 @@ SUPABASE_KEY = os.environ.get("SUPABASE_SECRET_KEY", "")
 BASE_URL = "https://malaysia-encyclopedia.vercel.app"
 SITE_NAME = "馬來西亞百科"
 REPO_DIR = Path("/Users/ki/Documents/malaysia-encyclopedia")
-TODAY = "2026-06-01"
+TODAY = date.today().isoformat()  # was hardcoded "2026-06-01" from the original one-off run; fixed 2026-07-26 so reruns stamp the real generation date
 
 if not SUPABASE_KEY:
     raise ValueError("SUPABASE_SECRET_KEY env var not set. Run: source ~/.openclaw/.env")
@@ -356,8 +356,25 @@ def build_html(article: dict, url_path: str, lang: str) -> str:
 </html>"""
 
 def update_sitemap(url_paths: list) -> None:
-    """Update sitemap.xml with all article URLs."""
+    """Update sitemap.xml with all article URLs.
+
+    Merges with any pre-existing sitemap.xml entries instead of replacing
+    wholesale: this run only re-fetches insights that are CURRENTLY
+    status=published in Supabase, but earlier runs (2026-06-01) generated
+    static pages for lang=en/ms insights that have since been unpublished
+    in the DB while their static HTML files remain deployed on disk/Vercel.
+    A naive overwrite would silently drop ~158 already-indexed URLs from
+    discovery. We union instead so this rerun is strictly additive.
+    """
     sitemap_path = REPO_DIR / "sitemap.xml"
+
+    existing_paths = set()
+    if sitemap_path.exists():
+        existing_xml = sitemap_path.read_text(encoding="utf-8")
+        for m in re.finditer(r"<loc>" + re.escape(BASE_URL) + r"/([^<]+)/</loc>", existing_xml):
+            existing_paths.add(m.group(1))
+
+    merged_paths = existing_paths | set(url_paths)
 
     urls = ['<?xml version="1.0" encoding="UTF-8"?>',
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
@@ -368,7 +385,7 @@ def update_sitemap(url_paths: list) -> None:
             f'    <lastmod>{TODAY}</lastmod>',
             '  </url>']
 
-    for path in sorted(url_paths):
+    for path in sorted(merged_paths):
         urls += [
             '  <url>',
             f'    <loc>{BASE_URL}/{path}/</loc>',
@@ -380,7 +397,7 @@ def update_sitemap(url_paths: list) -> None:
 
     urls.append('</urlset>')
     sitemap_path.write_text("\n".join(urls) + "\n", encoding="utf-8")
-    print(f"  Sitemap updated: {len(url_paths)} article URLs")
+    print(f"  Sitemap updated: {len(merged_paths)} article URLs ({len(url_paths)} from this run + {len(merged_paths - set(url_paths))} preserved from prior runs)")
 
 def main():
     counts = {"zh": 0, "en": 0, "ms": 0}
