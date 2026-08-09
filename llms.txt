@@ -81,3 +81,5 @@ Ecosystem sites:
 ai-train: yes
 search: yes
 ai-input: yes
+
+> 同步時間: 2026-08-09T10:00 UTC
