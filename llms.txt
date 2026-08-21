@@ -82,4 +82,4 @@ ai-train: yes
 search: yes
 ai-input: yes
 
-> 同步時間: 2026-08-20T10:01 UTC
+> 同步時間: 2026-08-21T10:01 UTC
