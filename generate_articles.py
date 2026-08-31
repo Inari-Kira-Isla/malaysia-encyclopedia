@@ -34,7 +34,7 @@ def fetch_articles(lang: str) -> list:
         "region": "eq.MY",
         "status": "eq.published",
         "lang": f"eq.{lang}",
-        "select": "slug,title,body_html,faqs,verification_sources,lang,word_count",
+        "select": "slug,title,body_html,faqs,verification_sources,lang,word_count,created_at",
         "limit": "300",
     })
     url = f"{SUPABASE_URL}/rest/v1/insights?{params}"
@@ -399,9 +399,52 @@ def update_sitemap(url_paths: list) -> None:
     sitemap_path.write_text("\n".join(urls) + "\n", encoding="utf-8")
     print(f"  Sitemap updated: {len(merged_paths)} article URLs ({len(url_paths)} from this run + {len(merged_paths - set(url_paths))} preserved from prior runs)")
 
+
+_TAG_RE = re.compile(r"<[^>]+>")
+
+
+def build_feed_xml(feed_items: list) -> str:
+    """WP-11 (2026-08-29): malaysia-encyclopedia has never had a feed.xml —
+    generate_articles.py only ever wrote sitemap.xml (see update_sitemap()
+    above). This is a net-new RSS 2.0 feed, not a fix to an existing one.
+
+    feed_items: list of dicts with keys title/url_path/body_html/created_at,
+    collected during main()'s per-article loop (this run's zh/en/ms output
+    only — same "this run" scope as url_paths in update_sitemap(), not a
+    merge with prior runs, since feed.xml is meant to reflect recent items
+    not a full historical index like the sitemap).
+    """
+    items_xml = ""
+    for it in sorted(feed_items, key=lambda x: x.get("created_at") or "", reverse=True)[:30]:
+        title_esc = html.escape(it["title"])
+        plain_body = _TAG_RE.sub(" ", it.get("body_html") or "")
+        desc_esc = html.escape(" ".join(plain_body.split())[:300])
+        link = f"{BASE_URL}/{it['url_path']}/"
+        pub_date = (it.get("created_at") or "")[:10] or TODAY
+        items_xml += f"""    <item>
+      <title>{title_esc}</title>
+      <link>{link}</link>
+      <description>{desc_esc}</description>
+      <pubDate>{pub_date}</pubDate>
+      <guid>{link}</guid>
+    </item>\n"""
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{SITE_NAME} — Malaysia Encyclopedia</title>
+    <link>{BASE_URL}</link>
+    <description>深度解析馬來西亞飲食文化、日本料理在地化、娛樂產業與主題樂園</description>
+    <language>zh-TW</language>
+    <lastBuildDate>{TODAY}</lastBuildDate>
+    <atom:link href="{BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
+{items_xml}  </channel>
+</rss>"""
+
+
 def main():
     counts = {"zh": 0, "en": 0, "ms": 0}
     all_url_paths = []
+    feed_items = []
 
     for lang in ["zh", "en", "ms"]:
         print(f"\nFetching lang={lang}...")
@@ -429,6 +472,12 @@ def main():
             (page_dir / "index.html").write_text(page_html, encoding="utf-8")
 
             all_url_paths.append(url_path)
+            feed_items.append({
+                "title": article.get("title") or slug,
+                "url_path": url_path,
+                "body_html": article.get("body_html") or "",
+                "created_at": article.get("created_at") or "",
+            })
             counts[lang] += 1
 
         print(f"  Generated {counts[lang]} pages for lang={lang}")
@@ -436,6 +485,14 @@ def main():
     # Update sitemap
     print("\nUpdating sitemap.xml...")
     update_sitemap(all_url_paths)
+
+    # WP-11 (2026-08-29): feed.xml never existed for malaysia-encyclopedia —
+    # net-new, generated from this run's articles only (see build_feed_xml
+    # docstring for why this doesn't merge with prior runs like the sitemap does).
+    print("\nWriting feed.xml...")
+    feed_path = REPO_DIR / "feed.xml"
+    feed_path.write_text(build_feed_xml(feed_items), encoding="utf-8")
+    print(f"  feed.xml written: {min(len(feed_items), 30)} items")
 
     total = sum(counts.values())
     print(f"\nDone! Total pages generated: {total}")
