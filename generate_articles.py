@@ -16,7 +16,7 @@ SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://yitmabzsxfgbchhhjjef.supa
 SUPABASE_KEY = os.environ.get("SUPABASE_SECRET_KEY", "")
 BASE_URL = "https://malaysia-encyclopedia.vercel.app"
 SITE_NAME = "馬來西亞百科"
-REPO_DIR = Path("/Users/ki/Documents/malaysia-encyclopedia")
+REPO_DIR = Path(__file__).resolve().parent
 TODAY = date.today().isoformat()  # was hardcoded "2026-06-01" from the original one-off run; fixed 2026-07-26 so reruns stamp the real generation date
 
 if not SUPABASE_KEY:
@@ -441,6 +441,33 @@ def build_feed_xml(feed_items: list) -> str:
 </rss>"""
 
 
+def build_atom_xml(feed_items: list) -> str:
+    """Build the native Atom document served at /atom.xml."""
+    updated = f"{TODAY}T00:00:00Z"
+    entries_xml = ""
+    for it in sorted(feed_items, key=lambda x: x.get("created_at") or "", reverse=True)[:30]:
+        title_esc = html.escape(it["title"])
+        plain_body = _TAG_RE.sub(" ", it.get("body_html") or "")
+        summary_esc = html.escape(" ".join(plain_body.split())[:300])
+        link = f"{BASE_URL}/{it['url_path']}/"
+        entries_xml += f"""  <entry>
+    <title>{title_esc}</title>
+    <link href="{link}"/>
+    <id>{link}</id>
+    <updated>{updated}</updated>
+    <summary>{summary_esc}</summary>
+  </entry>\n"""
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{SITE_NAME} — Malaysia Encyclopedia</title>
+  <link href="{BASE_URL}/"/>
+  <link href="{BASE_URL}/atom.xml" rel="self" type="application/atom+xml"/>
+  <id>{BASE_URL}/</id>
+  <updated>{updated}</updated>
+{entries_xml}</feed>
+"""
+
+
 def main():
     counts = {"zh": 0, "en": 0, "ms": 0}
     all_url_paths = []
@@ -489,10 +516,12 @@ def main():
     # WP-11 (2026-08-29): feed.xml never existed for malaysia-encyclopedia —
     # net-new, generated from this run's articles only (see build_feed_xml
     # docstring for why this doesn't merge with prior runs like the sitemap does).
-    print("\nWriting feed.xml...")
-    feed_path = REPO_DIR / "feed.xml"
-    feed_path.write_text(build_feed_xml(feed_items), encoding="utf-8")
-    print(f"  feed.xml written: {min(len(feed_items), 30)} items")
+    print("\nWriting feed.xml, rss.xml and atom.xml...")
+    rss_xml = build_feed_xml(feed_items)
+    (REPO_DIR / "feed.xml").write_text(rss_xml, encoding="utf-8")
+    (REPO_DIR / "rss.xml").write_text(rss_xml, encoding="utf-8")
+    (REPO_DIR / "atom.xml").write_text(build_atom_xml(feed_items), encoding="utf-8")
+    print(f"  feeds written: {min(len(feed_items), 30)} items")
 
     total = sum(counts.values())
     print(f"\nDone! Total pages generated: {total}")
