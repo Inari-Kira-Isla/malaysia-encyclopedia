@@ -180,7 +180,7 @@ def build_html(article: dict, url_path: str, lang: str) -> str:
     faq_html = build_faq_html(faqs)
 
     # Lang attribute
-    lang_attr_map = {"zh": "zh-Hant", "en": "en", "ms": "ms"}
+    lang_attr_map = {"zh": "zh-Hant", "en": "en", "ms": "ms", "pt": "pt-BR"}
     lang_attr = lang_attr_map.get(lang, "zh-Hant")
 
     encoded_slug = urllib.parse.quote(slug, safe='')
@@ -469,11 +469,15 @@ def build_atom_xml(feed_items: list) -> str:
 
 
 def main():
-    counts = {"zh": 0, "en": 0, "ms": 0}
+    counts = {"zh": 0, "en": 0, "ms": 0, "pt": 0}
     all_url_paths = []
     feed_items = []
 
-    for lang in ["zh", "en", "ms"]:
+    # 2026-11-12 fix：原本 for lang 只有 ["zh","en","ms"]，但 Supabase 已經有
+    # 31 筆 lang=pt 嘅 published insight（葡文版馬來西亞內容，body 完整、
+    # 已 publish），呢啲葡文版從來冇生成過 static page —— 即係 published
+    # 內容完全冇上線、亦冇入 sitemap。加 "pt" 一行就全部補齊。
+    for lang in ["zh", "en", "ms", "pt"]:
         print(f"\nFetching lang={lang}...")
         articles = fetch_articles(lang)
         print(f"  Got {len(articles)} articles")
