@@ -54,12 +54,53 @@ def get_faq_value(faq: dict, key: str) -> str:
     else:
         return faq.get("answer") or faq.get("a") or ""
 
+def _cjk_ratio(text: str) -> float:
+    """CJK / (CJK + latin-words) ratio. Used to detect untranslated (Chinese)
+    content leaking into a non-zh page. Same metric as the translation skill:
+    strip tags -> CJK chars / (CJK chars + latin words).
+    """
+    if not text:
+        return 0.0
+    cjk = len(re.findall(r"[\u4e00-\u9fff]", text))
+    latin = len(re.findall(r"[A-Za-z]+", text))
+    return cjk / (cjk + latin) if (cjk + latin) else 0.0
+
+
+def filter_untranslated_faqs(faqs: list, lang: str) -> list:
+    """Drop FAQ entries that are still Chinese when the page language isn't zh.
+
+    Root cause (2026-11-22): MiniMax 5xx/529 fallbacks and legacy injector
+    rows wrote the *Chinese* FAQ text into lang=en/ms/pt insights.  The static
+    exporter happily published them, so Malaysian pages shipped visible Chinese
+    FAQ answers (and matching FAQPage JSON-LD) under an <html lang="ms"> tag —
+    bad for AEO and a direct quality regression on the MY encyclopedia.
+
+    Any individual FAQ whose question+answer is >30% CJK is considered
+    untranslated and is excluded from both the visible FAQ section and the
+    FAQPage schema for non-zh pages.
+    """
+    if not faqs or not isinstance(faqs, list):
+        return []
+    if lang == "zh":
+        return faqs
+    kept = []
+    for faq in faqs:
+        if not isinstance(faq, dict):
+            continue
+        q = get_faq_value(faq, "question")
+        a = get_faq_value(faq, "answer")
+        if _cjk_ratio(f"{q} {a}") > 0.30:
+            continue
+        kept.append(faq)
+    return kept
+
+
 def build_schema_json(article: dict, url_path: str, lang: str) -> str:
     """Build JSON-LD schema block."""
     slug = article["slug"]
     title = article.get("title") or slug
     verification_sources = article.get("verification_sources") or []
-    faqs = article.get("faqs") or []
+    faqs = filter_untranslated_faqs(article.get("faqs") or [], lang)
 
     # Build isBasedOn
     is_based_on = []
@@ -174,7 +215,7 @@ def build_html(article: dict, url_path: str, lang: str) -> str:
     slug = article["slug"]
     title = article.get("title") or slug
     body_html = article.get("body_html") or f"<p>{html.escape(title)}</p>"
-    faqs = article.get("faqs") or []
+    faqs = filter_untranslated_faqs(article.get("faqs") or [], lang)
 
     schema_block = build_schema_json(article, url_path, lang)
     faq_html = build_faq_html(faqs)

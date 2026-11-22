@@ -5,8 +5,15 @@
     <link>https://malaysia-encyclopedia.vercel.app</link>
     <description>深度解析馬來西亞飲食文化、日本料理在地化、娛樂產業與主題樂園</description>
     <language>zh-TW</language>
-    <lastBuildDate>2026-11-22</lastBuildDate>
+    <lastBuildDate>2026-11-23</lastBuildDate>
     <atom:link href="https://malaysia-encyclopedia.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Roti Canai: Roh-rtuh Breakfast cultures Malaysia</title>
+      <link>https://malaysia-encyclopedia.vercel.app/my-food-culture-roti-canai-01-ms/</link>
+      <description>Asal Usul Roti Canai: Warisan Makanan Imigran India Selatan Sejarah Roti Canai dapat dijejak kembali hingga akhir abad ke-19 dan awal abad ke-20, apabila ribuan imigran Tamil dari India Selatan berimigrasi ke Malaya Britisher untuk bekerja, terutamanya di estet dan projek pembinaan relang. Mereka me</description>
+      <pubDate>2026-11-21</pubDate>
+      <guid>https://malaysia-encyclopedia.vercel.app/my-food-culture-roti-canai-01-ms/</guid>
+    </item>
     <item>
       <title>Dataran Tinggi Cameron: Panduan Lengkap Mengenai Ladang Teh, Ladang Strawberi dan percutian Highlands di Malaysia</title>
       <link>https://malaysia-encyclopedia.vercel.app/my-travel-cameron-highlands-01-ms/</link>
@@ -209,13 +216,6 @@
       <description>馬來西亞主要榴槤品種概覽 馬來西亞是全球最重要的榴槤產地之一，根據馬來西亞農業部2023年數據，全國榴槤種植面積超過16萬公頃，年產量約45萬噸，其中彭亨州和柔佛州佔總產量超過70%。作為「水果之王」的故鄉，馬來西亞擁有超過200個榴槤品種，但市場上流通的主要品种不超過20種，形成一個以頂級品種為核心的金字塔結構。 在眾多品種中，貓山王（Musang King，又稱D197）無疑是知名度最高的「旗艦級」產品。這種榴槤的特徵是果柄較短、果殼呈現金黃色，果肉則呈現濃郁的金黃色澤，甜度極高且帶有微微的苦味回甘。根據馬來西亞榴槤出口協會統計，貓山王的市場佔有率約為35%，平均價格為每公斤25至40令吉</description>
       <pubDate>2026-06-26</pubDate>
       <guid>https://malaysia-encyclopedia.vercel.app/my-musang-king-vs-other-durian-varieties-01/</guid>
-    </item>
-    <item>
-      <title>馬來西亞榴槤農場直銷：彭亨・居鑾・烏魯冷岳採購指南</title>
-      <link>https://malaysia-encyclopedia.vercel.app/my-musang-king-farm-direct-purchase-01/</link>
-      <description>農場直銷的優勢：新鮮度・價格・品種保證 根據馬來西亞榴槤公會 2023 年統計，通過農場直銷購買的榴槤，平均食用時機比傳統批發渠道提早 2-3 天，新鮮度指標（如果肉糖度保存率）高出約 25%，這是因為省略了中盤商與零售通路的多層轉運環節。選擇農場直銷不僅能確保果實在最佳成熟度時採摘，更能避免長途運輸造成的品質損耗。 在價格層面，農場直銷可省去批發商利潤（約佔終端售價 30%-40%）與零售店租金成本。以常見的貓山王為例，批發市場零售價約每公斤馬幣 80-120 元，而農場直銷價格通常在每公斤馬幣 55-85 元之間，差價可達 20%-35%。對於採購量較大的買家（如水果零售商、餐飲業者），議</description>
-      <pubDate>2026-06-26</pubDate>
-      <guid>https://malaysia-encyclopedia.vercel.app/my-musang-king-farm-direct-purchase-01/</guid>
     </item>
   </channel>
 </rss>
